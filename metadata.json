@@ -1,0 +1,5 @@
+{
+  "name": "Prism-Edge Homepage",
+  "description": "Public bilingual landing page for Prism-Edge, covering DGWM verification, the Electron desktop terminal, API access, SDK access, and early-access requests.",
+  "requestFramePermissions": []
+}
