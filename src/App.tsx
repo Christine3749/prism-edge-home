@@ -101,8 +101,8 @@ const reportedModelMaxDrawdown = -6.57;
 const quantBenchmarkLead = quantBenchmarkEndpoint.model - quantBenchmarkEndpoint.highFlyer;
 const benchmarkModelColor = "#51478F";
 const benchmarkAccentColor = "#463E7A";
-const benchmarkHighFlyerColor = "#8A8074";
-const benchmarkAqrColor = "#4D6B92";
+const benchmarkHighFlyerColor = "#7E7468";
+const benchmarkAqrColor = "#3F6593";
 const benchmarkDrawdownColor = "#B44D5C";
 const editorialEase = [0.22, 1, 0.36, 1] as const;
 
@@ -200,8 +200,8 @@ function LiveBenchmarkSection({ copy }: { copy: TranslationModel["liveBenchmark"
   ];
   const series = [
     { key: "model" as const, label: copy.modelLabel, color: benchmarkModelColor, width: 2.4, dash: undefined },
-    { key: "highFlyer" as const, label: copy.highFlyerLabel, color: benchmarkHighFlyerColor, width: 1.65, dash: "7 5" },
-    { key: "aqr" as const, label: copy.aqrLabel, color: benchmarkAqrColor, width: 1.55, dash: "2 5" },
+    { key: "highFlyer" as const, label: copy.highFlyerLabel, color: benchmarkHighFlyerColor, width: 1.85, dash: "7 5" },
+    { key: "aqr" as const, label: copy.aqrLabel, color: benchmarkAqrColor, width: 1.75, dash: "2 5" },
   ];
   const displayIndex = hoveredIndex ?? lockedIndex;
   const displayedPoint = displayIndex === null ? null : quantBenchmarkPoints[displayIndex];
@@ -291,10 +291,10 @@ function LiveBenchmarkSection({ copy }: { copy: TranslationModel["liveBenchmark"
     <section
       id="live-benchmark"
       aria-labelledby="live-benchmark-title"
-      className="relative overflow-hidden border-y border-[#0A0A0A]/10 bg-[#F2EFE9] py-16 scroll-mt-16 xl:py-20"
+      className="section-pad relative overflow-hidden border-y border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-16"
     >
-      <div className="relative mx-auto max-w-7xl px-6 md:px-12">
-        <header className="mb-8 grid grid-cols-1 items-start gap-7 lg:grid-cols-[minmax(0,1.75fr)_minmax(360px,0.95fr)] lg:gap-14">
+      <div className="site-shell relative">
+        <header className="mb-7 grid grid-cols-1 items-start gap-6 md:mb-8 lg:grid-cols-[minmax(0,1.75fr)_minmax(340px,0.95fr)] lg:gap-10 xl:gap-14">
           <motion.div
             className="min-w-0 space-y-4"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
@@ -308,7 +308,7 @@ function LiveBenchmarkSection({ copy }: { copy: TranslationModel["liveBenchmark"
               </span>
               <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#5648A8]">{copy.eyebrow}</span>
             </div>
-            <h2 id="live-benchmark-title" className="max-w-none text-balance font-serif text-4xl font-medium leading-[1.12] tracking-[-0.015em] text-[#0A0A0A] md:text-5xl lg:text-[3.15rem]">
+            <h2 id="live-benchmark-title" className="max-w-none text-balance font-serif text-[2rem] font-medium leading-[1.12] tracking-[-0.015em] text-[#0A0A0A] sm:text-4xl md:text-5xl lg:text-[2.8rem] xl:text-[3.15rem]">
               <span className="flex flex-wrap items-baseline gap-x-[0.16em]">
                 <span className="whitespace-nowrap">{copy.titleLead}</span>
                 <span className="whitespace-nowrap">{copy.titleTail}</span>
@@ -516,7 +516,7 @@ function LiveBenchmarkSection({ copy }: { copy: TranslationModel["liveBenchmark"
                   strokeOpacity={
                     activeSeries
                       ? activeSeries === item.key ? 1 : 0.2
-                      : item.key === "model" ? 0.94 : 0.64
+                      : item.key === "model" ? 0.94 : 0.8
                   }
                   strokeDasharray={item.dash}
                   strokeLinecap="round"
@@ -556,7 +556,7 @@ function LiveBenchmarkSection({ copy }: { copy: TranslationModel["liveBenchmark"
                     opacity={
                       activeSeries
                         ? activeSeries === item.key ? 1 : 0.2
-                        : item.key === "model" ? 0.94 : 0.64
+                        : item.key === "model" ? 0.94 : 0.8
                     }
                     vectorEffect="non-scaling-stroke"
                     initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.72 }}
@@ -576,7 +576,7 @@ function LiveBenchmarkSection({ copy }: { copy: TranslationModel["liveBenchmark"
                   y2={endpointLabelY[item.key]}
                   stroke={item.color}
                   strokeWidth="1"
-                  strokeOpacity={activeSeries && activeSeries !== item.key ? 0.16 : 0.48}
+                  strokeOpacity={activeSeries && activeSeries !== item.key ? 0.16 : 0.55}
                   vectorEffect="non-scaling-stroke"
                   initial={prefersReducedMotion ? false : { opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -786,7 +786,7 @@ function LiveBenchmarkSection({ copy }: { copy: TranslationModel["liveBenchmark"
             >
               {copy.sourceLink}
             </a>
-            <p className="max-w-3xl text-[11px] leading-relaxed text-[#0A0A0A]/65 lg:mx-auto lg:text-center">
+            <p className="hidden max-w-3xl text-[11px] leading-relaxed text-[#0A0A0A]/65 sm:block lg:mx-auto lg:text-center">
               {copy.evidenceLine}
             </p>
             <details className="group max-w-4xl lg:text-right">
@@ -929,8 +929,8 @@ export default function App() {
       
       {/* 1. TOP NAV */}
       <nav className="sticky top-0 z-50 bg-[#F2EFE9]/90 backdrop-blur-md border-b border-[#0A0A0A]/10 transition-all">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-8 lg:gap-12">
+        <div className="site-shell flex items-center justify-between py-3 md:py-4">
+          <div className="flex items-center gap-6 lg:gap-8 xl:gap-12">
             <a href="#" className="flex items-center group focus:outline-none" aria-label="Prism-Edge home">
               <PrismEdgeLogo />
             </a>
@@ -1048,7 +1048,7 @@ export default function App() {
 
       <main id="main-content">
       {/* 2. HERO SECTION */}
-      <section className="relative py-16 md:py-24 overflow-hidden flex items-center border-b border-[#0A0A0A]/10">
+      <section className="relative flex items-center overflow-hidden border-b border-[#0A0A0A]/10 py-12 sm:py-14 md:py-16 xl:py-20">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none z-0">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -1060,13 +1060,13 @@ export default function App() {
           </svg>
         </div>
 
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-8 space-y-6 text-left">
+        <div className="site-shell relative z-10 grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+          <div className="space-y-5 text-left lg:col-span-8 xl:space-y-6">
             <div className="inline-flex items-center gap-2 border border-[#7C6AF7]/30 bg-[#7C6AF7]/5 rounded-sm px-3.5 py-1 text-[11px] font-mono font-medium text-[#7C6AF7]">
               <span>{t.hero.manifesto}</span>
             </div>
             
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-[54px] font-medium tracking-tight leading-[1.1] text-[#0A0A0A] max-w-4xl">
+            <h1 className="max-w-4xl font-serif text-[2.05rem] font-medium leading-[1.1] tracking-tight text-[#0A0A0A] sm:text-4xl lg:text-[3.1rem] xl:text-[3.375rem]">
               {t.hero.titlePart1}<span className="italic text-[#7C6AF7]">{t.hero.titleAccent}</span>{t.hero.titlePart2}
             </h1>
             
@@ -1115,8 +1115,8 @@ export default function App() {
           </div>
 
           {/* Side Product Verification Trace */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <div className="relative p-5 border border-[#0A0A0A]/15 rounded-sm bg-white/65 backdrop-blur-sm max-w-sm w-full shadow-[0_18px_60px_rgba(10,10,10,0.06)]">
+          <div className="flex justify-center lg:col-span-4 lg:justify-end">
+            <div className="relative w-full max-w-sm rounded-sm border border-[#0A0A0A]/15 bg-white/65 p-4 shadow-[0_18px_60px_rgba(10,10,10,0.06)] backdrop-blur-sm sm:p-5">
               <div className="absolute -top-3 left-4 px-2 bg-[#F2EFE9] border border-[#0A0A0A]/15 rounded-sm">
                 <span className="font-mono text-[9px] tracking-wider uppercase text-gray-500 font-semibold">{t.hero.telemetry}</span>
               </div>
@@ -1132,17 +1132,17 @@ export default function App() {
               </div>
 
               <div className="space-y-2.5 pt-3">
-                <div className="border border-[#0A0A0A]/10 bg-[#F2EFE9]/70 p-3 rounded-sm">
+                <div className="rounded-sm border border-[#0A0A0A]/10 bg-[#F2EFE9]/70 p-2.5 sm:p-3">
                   <div className="font-mono text-[8px] font-bold uppercase tracking-wider text-[#0A0A0A]/40">{t.hero.rawOutputLabel}</div>
                   <div className="mt-1.5 text-xs font-semibold text-[#0A0A0A]/80">{t.hero.rawOutput}</div>
                 </div>
 
-                <div className="relative border-l-2 border-[#E4A617] bg-[#E4A617]/[0.06] p-3">
+                <div className="relative border-l-2 border-[#E4A617] bg-[#E4A617]/[0.06] p-2.5 sm:p-3">
                   <div className="font-mono text-[8px] font-bold uppercase tracking-wider text-[#9A6C00]">{t.hero.findingLabel}</div>
                   <div className="mt-1.5 text-xs leading-relaxed text-[#0A0A0A]/70">{t.hero.finding}</div>
                 </div>
 
-                <div className="border border-[#7C6AF7]/25 bg-[#7C6AF7]/[0.07] p-3 rounded-sm">
+                <div className="rounded-sm border border-[#7C6AF7]/25 bg-[#7C6AF7]/[0.07] p-2.5 sm:p-3">
                   <div className="font-mono text-[8px] font-bold uppercase tracking-wider text-[#7C6AF7]">{t.hero.routedDecisionLabel}</div>
                   <div className="mt-1.5 flex items-center justify-between gap-3">
                     <span className="text-sm font-bold text-[#0A0A0A]">{t.hero.routedDecision}</span>
@@ -1151,7 +1151,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="mt-3 border-t border-[#0A0A0A]/10 pt-2 font-mono text-[8px] uppercase tracking-wider text-[#0A0A0A]/40">
+              <div className="mt-3 hidden border-t border-[#0A0A0A]/10 pt-2 font-mono text-[8px] uppercase tracking-wider text-[#0A0A0A]/40 sm:block">
                 {t.hero.traceDisclaimer}
               </div>
             </div>
@@ -1161,7 +1161,7 @@ export default function App() {
 
       {/* DIFFERENTIATION: RAW AI -> DGWM -> ROUTED OUTCOME */}
       <section id="verification-example" className="py-10 border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-16">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+        <div className="site-shell grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             <div className="font-mono text-[10px] uppercase tracking-widest text-[#7C6AF7] font-bold">{t.computeDensity.eyebrow}</div>
             <h2 className="mt-3 font-serif text-2xl md:text-3xl font-semibold leading-tight tracking-tight">{t.computeDensity.title}</h2>
@@ -1189,11 +1189,11 @@ export default function App() {
       <LiveBenchmarkSection copy={t.liveBenchmark} />
 
       {/* 3. SCALE METRICS (Horizontal bar comparison) */}
-      <section id="scale" className="py-20 border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section id="scale" className="section-pad border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
+        <div className="site-shell">
           <div className="max-w-3xl mb-8 space-y-4">
             <span className="font-mono text-[11px] uppercase tracking-widest text-[#7C6AF7] font-semibold block">{t.scaleMetrics.sectionNum}</span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight">
+            <h2 className="font-serif text-[2rem] font-medium leading-tight tracking-tight sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl">
               {t.scaleMetrics.title}
             </h2>
             <p className="text-[#0A0A0A]/70 text-sm md:text-base">
@@ -1291,13 +1291,13 @@ export default function App() {
       </section>
 
       {/* 4. DARK TECHNICAL SECTION (Architecture / Topology Visualizer) */}
-      <section id="architecture" className="py-24 bg-[#0D0D0D] text-[#E5E2DC] border-t border-b border-[#0A0A0A]/20 scroll-mt-12">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+      <section id="architecture" className="section-pad border-y border-[#0A0A0A]/20 bg-[#0D0D0D] text-[#E5E2DC] scroll-mt-12">
+        <div className="site-shell grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14 xl:gap-20">
           
-          <div className="lg:col-span-6 space-y-8 text-left">
+          <div className="space-y-7 text-left lg:col-span-6 xl:space-y-8">
             <div className="space-y-3">
               <span className="font-mono text-[11px] uppercase tracking-widest text-[#7C6AF7] font-semibold block">{t.opticalBackplane.sectionNum}</span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white leading-tight">
+              <h2 className="font-serif text-[2rem] font-medium leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl">
                 {t.opticalBackplane.title}
               </h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed">
@@ -1328,7 +1328,7 @@ export default function App() {
 
           {/* Right Column: Custom Animated SVG Network Lattice */}
           <div className="lg:col-span-6 flex justify-center items-center">
-            <div className="w-full aspect-square max-w-md bg-[#111111] border border-white/10 rounded-sm p-8 relative flex items-center justify-center">
+            <div className="relative flex aspect-square w-full max-w-md items-center justify-center rounded-sm border border-white/10 bg-[#111111] p-5 sm:p-7 lg:p-8">
               
               <div className="absolute top-4 left-4 flex flex-col">
                 <span className="font-mono text-[8px] uppercase tracking-wider text-gray-500">{t.opticalBackplane.latticeBus}</span>
@@ -1410,10 +1410,10 @@ export default function App() {
       </section>
 
       {/* 5. BENCHMARK SECTION */}
-      <section id="benchmarks" className="py-20 border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section id="benchmarks" className="section-pad border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
+        <div className="site-shell">
           
-          <div className="max-w-3xl mb-12 space-y-3">
+          <div className="section-intro max-w-3xl space-y-3">
             <span className="font-mono text-[11px] uppercase tracking-widest text-[#7C6AF7] font-semibold block">{t.comparativeReport.sectionNum}</span>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-tight text-[#0A0A0A] leading-tight">
               {t.comparativeReport.title}
@@ -1423,7 +1423,7 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
             {/* Left Bar Chart Card */}
             <div className="lg:col-span-7 bg-[#EBE7E0]/60 border border-[#0A0A0A]/15 rounded-sm p-6 md:p-8 flex flex-col justify-between">
               <div className="space-y-2 mb-8">
@@ -1513,10 +1513,10 @@ export default function App() {
       </section>
 
       {/* 6. TECHNICAL COMPARISON (Interactive Scaling Curve Chart) */}
-      <section id="scaling-laws" className="py-20 border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section id="scaling-laws" className="section-pad border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
+        <div className="site-shell">
           
-          <div className="max-w-3xl mb-12 space-y-3">
+          <div className="section-intro max-w-3xl space-y-3">
             <span className="font-mono text-[11px] uppercase tracking-widest text-[#7C6AF7] font-semibold block">{t.scalingLaws.sectionNum}</span>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-tight text-[#0A0A0A] leading-tight">
               {t.scalingLaws.title}
@@ -1526,7 +1526,7 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
             {/* Left Controls */}
             <div className="lg:col-span-5 space-y-5">
               <div className="space-y-1.5">
@@ -1670,10 +1670,10 @@ export default function App() {
       </section>
 
       {/* 7. PRODUCT MATRIX */}
-      <section id="products" className="py-20 border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section id="products" className="section-pad border-b border-[#0A0A0A]/10 bg-[#F2EFE9] scroll-mt-12">
+        <div className="site-shell">
           
-          <div className="max-w-3xl mb-12 space-y-3">
+          <div className="section-intro max-w-3xl space-y-3">
             <span className="font-mono text-[11px] uppercase tracking-widest text-[#7C6AF7] font-semibold block">{t.products.sectionNum}</span>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-tight text-[#0A0A0A] leading-tight">
               {t.products.title}
@@ -1683,9 +1683,9 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3 xl:gap-6">
             {/* Prod 1 */}
-            <div className="border border-[#0A0A0A]/15 bg-white rounded-sm p-6 flex flex-col justify-between group hover:border-[#0A0A0A]/40 hover:shadow-sm transition-all">
+            <div className="group flex flex-col justify-between rounded-sm border border-[#0A0A0A]/15 bg-white p-5 transition-all hover:border-[#0A0A0A]/40 hover:shadow-sm sm:p-6">
               <div className="space-y-5">
                 <div className="flex justify-between items-start">
                   <span className="font-mono text-[9px] uppercase text-gray-500 bg-[#0A0A0A]/5 px-2 py-0.5 rounded-sm font-bold">{t.products.prod1Tag}</span>
@@ -1704,7 +1704,7 @@ export default function App() {
             </div>
 
             {/* Prod 2 */}
-            <div className="border border-[#0A0A0A]/15 bg-white rounded-sm p-6 flex flex-col justify-between group hover:border-[#0A0A0A]/40 hover:shadow-sm transition-all">
+            <div className="group flex flex-col justify-between rounded-sm border border-[#0A0A0A]/15 bg-white p-5 transition-all hover:border-[#0A0A0A]/40 hover:shadow-sm sm:p-6">
               <div className="space-y-5">
                 <div className="flex justify-between items-start">
                   <span className="font-mono text-[9px] uppercase text-[#7C6AF7] bg-[#7C6AF7]/10 px-2 py-0.5 rounded-sm font-bold">{t.products.prod2Tag}</span>
@@ -1723,7 +1723,7 @@ export default function App() {
             </div>
 
             {/* Prod 3 */}
-            <div className="border border-[#0A0A0A]/15 bg-white rounded-sm p-6 flex flex-col justify-between group hover:border-[#0A0A0A]/40 hover:shadow-sm transition-all">
+            <div className="group flex flex-col justify-between rounded-sm border border-[#0A0A0A]/15 bg-white p-5 transition-all hover:border-[#0A0A0A]/40 hover:shadow-sm sm:p-6">
               <div className="space-y-5">
                 <div className="flex justify-between items-start">
                   <span className="font-mono text-[9px] uppercase text-gray-500 bg-[#0A0A0A]/5 px-2 py-0.5 rounded-sm font-bold">{t.products.prod3Tag}</span>
@@ -1746,11 +1746,11 @@ export default function App() {
       </section>
 
       {/* 8. EARLY ACCESS */}
-      <section id="early-access" className="py-24 md:py-32 bg-[#0D0D0D] text-[#F2EFE9] relative overflow-hidden scroll-mt-12 border-t border-white/5">
+      <section id="early-access" className="relative overflow-hidden border-t border-white/5 bg-[#0D0D0D] py-16 text-[#F2EFE9] scroll-mt-12 sm:py-20 md:py-24 xl:py-28">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-sm pointer-events-none select-none z-0 rotate-45" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/5 rounded-sm pointer-events-none select-none z-0 rotate-45" strokeDasharray="3 3" />
 
-        <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-center space-y-8">
+        <div className="relative z-10 mx-auto max-w-4xl space-y-7 px-6 text-center md:space-y-8 md:px-12">
           <div className="space-y-3">
             <span className="font-mono text-[10px] uppercase tracking-widest text-[#7C6AF7] font-bold block">{t.reservation.sectionNum}</span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-tight">
@@ -1842,7 +1842,7 @@ export default function App() {
 
       {/* FOOTER */}
       <footer className="bg-[#0A0A0A] text-gray-500 text-xs border-t border-white/5 py-10">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="site-shell flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex items-center gap-3">
             <PrismEdgeLogo variant="dark" compact />
             <span className="text-[8px] font-mono border border-white/10 px-1.5 py-0.5 rounded-sm uppercase tracking-wider text-gray-400 font-bold">
